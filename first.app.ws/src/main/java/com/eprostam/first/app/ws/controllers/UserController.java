@@ -18,9 +18,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping
-	public String getUser() {
-		System.out.print("getUser() called");
+	@GetMapping(path="/{id}")
+	public String getUser(@PathVariable String id) {
+		System.out.print("getUser() called : "+id);
 		return "getUser() Called";
 	}
 	@PostMapping
