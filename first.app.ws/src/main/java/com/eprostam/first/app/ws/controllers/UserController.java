@@ -19,11 +19,19 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping(path="/{id}")
-	public String getUser(@PathVariable String id) {
-		System.out.print("getUser() called : "+id);
-		return "getUser() Called";
+	public UserResponse getUser(@PathVariable String userId) {
+		System.out.print("getUser() called : "+userId);
+		
+		// récupérer l'utilisateur 
+		UserDto userDto = userService.getUserByUserId(userId);
+		
+		// convertir la réponse
+		UserResponse userResponse = new UserResponse();
+		BeanUtils.copyProperties(userDto, userResponse);
+		return userResponse;
 	}
-	@PostMapping
+	
+	@PostMapping()
 	public UserResponse createUser(@RequestBody UserRequest userRequest) {
 		
 		// prendre les données de la couche representation

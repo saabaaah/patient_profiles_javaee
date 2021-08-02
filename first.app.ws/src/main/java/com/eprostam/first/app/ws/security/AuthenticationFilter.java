@@ -27,7 +27,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
-	AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager;
 	
 	
 	public AuthenticationFilter(AuthenticationManager authenticationManager) {
@@ -67,7 +67,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 				.compact();		
 		// get user ID
 		UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
-		UserDto userDto = userService.getUser(((User)authResult.getPrincipal()).getUsername());
+		UserDto userDto = userService.getUserByEmail(((User)authResult.getPrincipal()).getUsername());
 				
 		// load headers 
 		response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX+ token);
