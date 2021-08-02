@@ -1,6 +1,7 @@
 package com.eprostam.first.app.ws.shared;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class UserDto implements Serializable{
 	/**
@@ -11,6 +12,7 @@ public class UserDto implements Serializable{
 	private String userId;
 	private String firstName;
 	private String lastName;
+	private String birthDate;
 	private String email;
 	private String profession;
 	private int gender;
@@ -86,6 +88,12 @@ public class UserDto implements Serializable{
 	}
 	public void setEmailVerificationToken(String emailVerificationToken) {
 		this.emailVerificationToken = emailVerificationToken;
+	}
+	public String getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 	@Override
 	public String toString() {

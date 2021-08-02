@@ -38,6 +38,9 @@ public class UserEntity implements Serializable{
 	@Column(nullable=true)
 	private int gender;
 	
+	@Column(nullable=true)
+	private String birthDate;
+	
 	@Column(nullable=false)
 	private String encryptedPassword;
 
@@ -125,6 +128,15 @@ public class UserEntity implements Serializable{
 
 	public void setEmailVerificationStatus(boolean emailVerificationStatus) {
 		this.emailVerificationStatus = emailVerificationStatus;
+	}
+	
+	
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	@Override
