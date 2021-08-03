@@ -14,5 +14,6 @@ public interface UserService  extends UserDetailsService{
 	// CRUD METHODS //
 	UserDto createUser(UserDto userDto);
 	UserDto updateUser(String id, UserDto userDto);
+	void deleteUser(String id);
 
 }

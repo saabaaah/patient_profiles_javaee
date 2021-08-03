@@ -134,4 +134,18 @@ public class UserServiceImpl implements UserService{
 		return userDtoUpdated;
 	}
 
+	@Override
+	public void deleteUser(String id) {
+		// Get the user Entity
+		UserEntity userEntity = userRepository.findByUserId(id);
+		
+		// Check Data 
+		if(userEntity == null) {
+			throw new RuntimeException("No user with this ID found!");
+		}
+		
+		userRepository.delete(userEntity);
+		
+	}
+
 }
