@@ -3,15 +3,15 @@ package com.eprostam.first.app.ws.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.eprostam.first.app.ws.entities.UserEntity;
 import com.eprostam.first.app.ws.exeptions.UserException;
 import com.eprostam.first.app.ws.requests.UserRequest;
 import com.eprostam.first.app.ws.responses.ErrorMessages;
@@ -67,7 +67,7 @@ public class UserController {
 
 	@PostMapping(consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) throws UserException {
+	public ResponseEntity<UserResponse> createUser(@RequestBody @Valid UserRequest userRequest) throws UserException {
 
 		// check request data :
 		if (userRequest.getFirstName().isEmpty() || userRequest.getLastName().isEmpty()

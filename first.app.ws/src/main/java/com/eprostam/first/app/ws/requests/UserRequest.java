@@ -1,15 +1,38 @@
 package com.eprostam.first.app.ws.requests;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class UserRequest {
 
 	// Attributes
+	
+	@NotBlank(message="the first name can't be empty!")
 	private String firstName;
+	
+	@NotBlank(message="the last name can't be empty!")
 	private String lastName;
+	
+	@NotBlank(message="the email can't be empty!")
+	@Email(message="the email doesn't respect the right format!")
 	private String email;
+	
+	@NotBlank(message="the last name can't be empty!")
 	private String birthDate;
+	
+	@NotBlank(message="the birth date can't be empty!")
 	private String profession;
+	
+	@NotBlank(message="the password can't be empty!")
+	@Size(min=8, max=12, message="the password must be between 8 and 12 caracters!")
+	@Pattern(regexp="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$", message="The password must contain at least one of the following : UpperCase, LowerCase and Number !")
 	private String password;
+	
+	@NotNull(message="the gender can't be empty!")
 	private int gender;
 	
 	public String getBirthDate() {
@@ -62,9 +85,5 @@ public class UserRequest {
 		return "UserRequest [name=" + firstName + lastName.toUpperCase() + ", birthDate=" + birthDate + ", profession=" + profession + ", gender="
 				+ gender + "]";
 	}
-	
-	
-	
-	
 	
 }
