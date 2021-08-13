@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -75,17 +76,14 @@ public class UserController {
 			throw new UserException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
 
 		// prendre les données de la couche representation
-		UserDto userDto = new UserDto();
-
-		BeanUtils.copyProperties(userRequest, userDto);
+		ModelMapper mapper = new ModelMapper();
+		UserDto userDto = mapper.map(userRequest, UserDto.class);		
 
 		// convertir à un DTO pour la couche service
 		UserDto userDto2 = userService.createUser(userDto);
 
 		// user response à retourner
-		UserResponse userResponse = new UserResponse();
-
-		BeanUtils.copyProperties(userDto2, userResponse);
+		UserResponse userResponse = mapper.map(userDto2, UserResponse.class);	
 
 		return new ResponseEntity<UserResponse>(userResponse, HttpStatus.CREATED);
 	}

@@ -2,6 +2,7 @@ package com.eprostam.first.app.ws.shared;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class UserDto implements Serializable{
 	/**
@@ -20,6 +21,7 @@ public class UserDto implements Serializable{
 	private String encryptedPassword;
 	private String emailVerificationToken;
 	private boolean emailVerificationStatus;
+	private List<AddressDto> addresses;
 	
 	
 	public long getId() {
@@ -101,6 +103,12 @@ public class UserDto implements Serializable{
 				+ ", email=" + email + ", profession=" + profession + ", gender=" + gender + ", password=" + password
 				+ ", encryptedPassword=" + encryptedPassword + ", emailVerificationToken=" + emailVerificationToken
 				+ ", emailVerificationStatus=" + emailVerificationStatus + "]";
+	}
+	public List<AddressDto> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(List<AddressDto> addresses) {
+		this.addresses = addresses;
 	}
 	
 	

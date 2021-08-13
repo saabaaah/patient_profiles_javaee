@@ -1,5 +1,7 @@
 package com.eprostam.first.app.ws.requests;
 
+import java.util.List;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -33,6 +35,8 @@ public class UserRequest {
 	
 	@NotNull(message="the gender can't be empty!")
 	private int gender;
+	
+	private List<AddressRequest> addresses;
 	
 	public String getBirthDate() {
 		return birthDate;
@@ -84,5 +88,13 @@ public class UserRequest {
 		return "UserRequest [name=" + firstName + lastName.toUpperCase() + ", birthDate=" + birthDate + ", profession=" + profession + ", gender="
 				+ gender + "]";
 	}
+	public List<AddressRequest> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(List<AddressRequest> addresses) {
+		this.addresses = addresses;
+	}
+	
+	
 	
 }

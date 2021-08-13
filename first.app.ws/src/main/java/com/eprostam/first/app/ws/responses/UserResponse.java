@@ -1,5 +1,7 @@
 package com.eprostam.first.app.ws.responses;
 
+import java.util.List;
+
 public class UserResponse {
 
 
@@ -11,6 +13,7 @@ public class UserResponse {
 	private String email;
 	private String profession;
 	private int gender;
+	private List<AddressResponse> addresses;
 	
 	
 	public String getFirstName() {
@@ -63,5 +66,13 @@ public class UserResponse {
 		return "UserResponse [name=" + firstName + " " +lastName.toUpperCase() + ", birthDate=" + birthDate + ", profession=" + profession + ", gender="
 				+ gender + "]";
 	}
+	public List<AddressResponse> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(List<AddressResponse> addresses) {
+		this.addresses = addresses;
+	}
+	
+	
 	
 }

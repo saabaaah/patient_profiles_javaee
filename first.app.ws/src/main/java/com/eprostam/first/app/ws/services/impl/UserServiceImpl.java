@@ -1,8 +1,10 @@
 package com.eprostam.first.app.ws.services.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -89,11 +91,14 @@ public class UserServiceImpl implements UserService{
 		UserEntity checkUser = userRepository.findByEmail(userDto.getEmail());
 		if(checkUser != null) 
 			throw new RuntimeException("User with the email already exist!!");
-		// générer l'entité de user
-		UserEntity userEntity = new UserEntity();
 		
-		BeanUtils.copyProperties(userDto, userEntity);
 		
+		// add address ids 
+		//for(int i= 0 ; i < )
+		// generate user entity
+		ModelMapper mapper = new ModelMapper();
+		UserEntity userEntity = mapper.map(userDto, UserEntity.class);	
+				
 		// encrypt password
 		userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
 		
@@ -106,8 +111,7 @@ public class UserServiceImpl implements UserService{
 		System.out.println("savedUser : "+savedUser);
 		
 		// copier les données Dto à retourner
-		UserDto userDto2 = new UserDto();
-		BeanUtils.copyProperties(savedUser, userDto2);
+		UserDto userDto2 = mapper.map(savedUser, UserDto.class);	
 		System.out.println("userDto2 : "+userDto2);
 		
 		return userDto2;
