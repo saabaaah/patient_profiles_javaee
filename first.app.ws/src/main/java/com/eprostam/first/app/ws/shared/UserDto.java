@@ -22,6 +22,7 @@ public class UserDto implements Serializable{
 	private String emailVerificationToken;
 	private boolean emailVerificationStatus;
 	private List<AddressDto> addresses;
+	private ContactDto contact;
 	
 	
 	public long getId() {
@@ -109,6 +110,12 @@ public class UserDto implements Serializable{
 	}
 	public void setAddresses(List<AddressDto> addresses) {
 		this.addresses = addresses;
+	}
+	public ContactDto getContact() {
+		return contact;
+	}
+	public void setContact(ContactDto contact) {
+		this.contact = contact;
 	}
 	
 	
