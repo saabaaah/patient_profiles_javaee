@@ -81,8 +81,8 @@ public class UserController {
 
 		// prendre les données de la couche representation
 		ModelMapper mapper = new ModelMapper();
-		UserDto userDto = mapper.map(userRequest, UserDto.class);		
-
+		UserDto userDto = mapper.map(userRequest, UserDto.class);	
+		
 		// convertir à un DTO pour la couche service
 		UserDto userDto2 = userService.createUser(userDto);
 

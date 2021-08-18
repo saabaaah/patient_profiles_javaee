@@ -93,7 +93,11 @@ public class UserServiceImpl implements UserService{
 			throw new RuntimeException("User with the email already exist!!");
 		
 		
-		// add address ids 
+		// check if we have the addresses set, else, we declare an empty array
+		if(userDto.getAddresses() == null) {
+			userDto.setAddresses(new ArrayList<>());
+		}
+		// add address ids if the addresses are set
 		for(int i= 0 ; i < userDto.getAddresses().size(); i++) {
 			userDto.getAddresses().get(i).setUser(userDto);
 			userDto.getAddresses().get(i).setAddressId(utils.generateStringId(30));
