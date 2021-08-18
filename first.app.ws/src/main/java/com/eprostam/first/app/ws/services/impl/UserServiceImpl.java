@@ -94,7 +94,11 @@ public class UserServiceImpl implements UserService{
 		
 		
 		// add address ids 
-		//for(int i= 0 ; i < )
+		for(int i= 0 ; i < userDto.getAddresses().size(); i++) {
+			userDto.getAddresses().get(i).setUser(userDto);
+			userDto.getAddresses().get(i).setAddressId(utils.generateStringId(30));
+		}
+		
 		// generate user entity
 		ModelMapper mapper = new ModelMapper();
 		UserEntity userEntity = mapper.map(userDto, UserEntity.class);	

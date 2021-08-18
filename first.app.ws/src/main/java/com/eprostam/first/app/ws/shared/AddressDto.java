@@ -14,6 +14,8 @@ public class AddressDto implements Serializable {
 	private String city;
 	private String zip;
 	private String street;
+	private UserDto user;
+	
 	public String getAddressId() {
 		return addressId;
 	}
@@ -57,6 +59,12 @@ public class AddressDto implements Serializable {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public UserDto getUser() {
+		return user;
+	}
+	public void setUser(UserDto user) {
+		this.user = user;
 	}
 	
 	
