@@ -1,4 +1,4 @@
-package com.eprostam.first.app.ws.exeptions;
+package com.eprostam.first.app.ws.exceptions;
 
 import java.util.Date;
 import java.util.HashMap;

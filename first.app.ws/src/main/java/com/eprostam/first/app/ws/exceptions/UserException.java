@@ -1,4 +1,4 @@
-package com.eprostam.first.app.ws.exeptions;
+package com.eprostam.first.app.ws.exceptions;
 
 public class UserException extends RuntimeException{
 

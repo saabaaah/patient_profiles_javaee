@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.eprostam.first.app.ws.exeptions.UserException;
+import com.eprostam.first.app.ws.exceptions.UserException;
 import com.eprostam.first.app.ws.requests.UserRequest;
 import com.eprostam.first.app.ws.responses.ErrorMessages;
 import com.eprostam.first.app.ws.responses.UserResponse;
