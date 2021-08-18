@@ -3,6 +3,7 @@ package com.eprostam.first.app.ws.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,7 +53,7 @@ public class UserEntity implements Serializable{
 	@Column(nullable = false)
 	private boolean emailVerificationStatus = false;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<AddressEntity> addresses;
 
 	public long getId() {

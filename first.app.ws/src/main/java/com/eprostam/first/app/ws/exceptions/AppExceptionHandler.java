@@ -29,9 +29,9 @@ public class AppExceptionHandler {
 	@ExceptionHandler(value= {Exception.class})
 	public ResponseEntity<Object> HandleOtherException(Exception ex, WebRequest req) {
 		
-		ErrorResponse response = new ErrorResponse(new Date(), ex.toString());
+		ErrorResponse response = new ErrorResponse(new Date(), ex.getMessage());
 		ex.printStackTrace();
-		return new ResponseEntity<Object>(ex.getStackTrace(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<Object>(response, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}
 	
