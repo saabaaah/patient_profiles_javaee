@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity(name="users")
@@ -55,6 +56,10 @@ public class UserEntity implements Serializable{
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<AddressEntity> addresses;
+	
+	// contact of the user
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
+	private ContactEntity contact;
 
 	public long getId() {
 		return id;

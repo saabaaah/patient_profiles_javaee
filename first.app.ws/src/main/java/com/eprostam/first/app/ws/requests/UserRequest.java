@@ -38,6 +38,8 @@ public class UserRequest {
 	
 	private List<AddressRequest> addresses;
 	
+	private ContactRequest contact;
+	
 	public String getBirthDate() {
 		return birthDate;
 	}
@@ -93,6 +95,12 @@ public class UserRequest {
 	}
 	public void setAddresses(List<AddressRequest> addresses) {
 		this.addresses = addresses;
+	}
+	public ContactRequest getContact() {
+		return contact;
+	}
+	public void setContact(ContactRequest contact) {
+		this.contact = contact;
 	}
 	
 	
