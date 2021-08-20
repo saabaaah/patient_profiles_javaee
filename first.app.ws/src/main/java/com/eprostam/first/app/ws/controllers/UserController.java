@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.modelmapper.*;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,8 +42,8 @@ public class UserController {
 
 		// copy results
 		for (UserDto userDto : userDtos) {
-			UserResponse userResponse = new UserResponse();
-			BeanUtils.copyProperties(userDto, userResponse);
+			ModelMapper mapper = new ModelMapper();
+			UserResponse userResponse = mapper.map(userDtos, UserResponse.class);
 
 			userResponses.add(userResponse);
 		}
@@ -63,13 +62,14 @@ public class UserController {
 		
 		// create return list
 		List<UserResponse> userResponses = new ArrayList<UserResponse>();
-
-		List<UserDto> userDtos = userService.getFemaleUsers(page, limit);
+		
+		// 1 : stands for female users
+		List<UserDto> userDtos = userService.getUsersByGender(page, limit, 1);
 
 		// copy results
+		ModelMapper mapper = new ModelMapper();
 		for (UserDto userDto : userDtos) {
-			UserResponse userResponse = new UserResponse();
-			BeanUtils.copyProperties(userDto, userResponse);
+			UserResponse userResponse = mapper.map(userDto, UserResponse.class);
 
 			userResponses.add(userResponse);
 		}
@@ -86,8 +86,8 @@ public class UserController {
 		UserDto userDto = userService.getUserByUserId(id);
 
 		// convertir la réponse
-		UserResponse userResponse = new UserResponse();
-		BeanUtils.copyProperties(userDto, userResponse);
+		ModelMapper mapper = new ModelMapper();
+		UserResponse userResponse = mapper.map(userDto, UserResponse.class);
 		return new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);
 	}
 
@@ -121,15 +121,14 @@ public class UserController {
 	public ResponseEntity<UserResponse> updateUser(@PathVariable String id, @RequestBody UserRequest userRequest) {
 
 		// get the user
-		UserDto userDto = new UserDto();
-		BeanUtils.copyProperties(userRequest, userDto);
+		ModelMapper mapper = new ModelMapper();
+		UserDto userDto = mapper.map(userRequest, UserDto.class);
 
 		// Update user
 		UserDto userDtoUpdated = userService.updateUser(id, userDto);
 
 		// create response object
-		UserResponse userResponse = new UserResponse();
-		BeanUtils.copyProperties(userDtoUpdated, userResponse);
+		UserResponse userResponse = mapper.map(userDtoUpdated, UserResponse.class);
 
 		return new ResponseEntity<UserResponse>(userResponse, HttpStatus.ACCEPTED);
 	}

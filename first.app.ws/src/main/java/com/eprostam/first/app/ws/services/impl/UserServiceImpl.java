@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
@@ -58,9 +57,8 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		// convert entity to Dto
-		UserDto userDto = new UserDto();
-		
-		BeanUtils.copyProperties(userEntity, userDto);
+		ModelMapper mapper = new ModelMapper();
+		UserDto userDto = mapper.map(userEntity, UserDto.class);
 		return userDto;
 	}
 
@@ -74,8 +72,8 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		// user found, return it 
-		UserDto userDto = new UserDto();
-		BeanUtils.copyProperties(userEntity, userDto);
+		ModelMapper mapper = new ModelMapper();
+		UserDto userDto = mapper.map(userEntity, UserDto.class);
 		
 		return userDto;
 	}
@@ -152,8 +150,8 @@ public class UserServiceImpl implements UserService{
 		UserEntity userEntityUpdated = userRepository.save(userEntity);
 		
 		// return Dto
-		UserDto userDtoUpdated = new UserDto();
-		BeanUtils.copyProperties(userEntityUpdated, userDtoUpdated);
+		ModelMapper mapper = new ModelMapper();
+		UserDto userDtoUpdated = mapper.map(userEntityUpdated, UserDto.class);
 		return userDtoUpdated;
 	}
 
@@ -181,10 +179,9 @@ public class UserServiceImpl implements UserService{
 		Page<UserEntity> pageUsers = userRepository.findAll(pageable);
 		
 		// convert results 
+		ModelMapper mapper = new ModelMapper();
 		for(UserEntity userEntity : pageUsers) {
-			UserDto dto = new UserDto();
-			BeanUtils.copyProperties(userEntity, dto);
-			
+			UserDto dto =  mapper.map(userEntity, UserDto.class);
 			userDtos.add(dto);
 		}
 		
@@ -192,19 +189,18 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<UserDto> getFemaleUsers(int page, int limit) {
+	public List<UserDto> getUsersByGender(int page, int limit, int gender) {
 		// list to return 
 		List<UserDto> userDtos = new ArrayList<>();
 		
 		// get users per page
 		Pageable pageable = PageRequest.of(page, limit);
-		Page<UserEntity> pageUsers = userRepository.findFemaleUsers(pageable);
+		Page<UserEntity> pageUsers = userRepository.findUsersByGender(pageable, gender);
 		
 		// convert results 
+		ModelMapper mapper = new ModelMapper();
 		for(UserEntity userEntity : pageUsers) {
-			UserDto dto = new UserDto();
-			BeanUtils.copyProperties(userEntity, dto);
-			
+			UserDto dto =  mapper.map(userEntity, UserDto.class);
 			userDtos.add(dto);
 		}
 		

@@ -12,7 +12,7 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, L
 	UserEntity findByEmail(String email);
 	UserEntity findByUserId(String userId);
 	
-	@Query(value = "select * from users where gender=1", nativeQuery = true)
-	Page<UserEntity> findFemaleUsers(Pageable pageableRequest);
+	@Query(value = "select * from users where gender=?1", nativeQuery = true)
+	Page<UserEntity> findUsersByGender(Pageable pageableRequest, int gender);
 
 }
