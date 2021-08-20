@@ -50,6 +50,31 @@ public class UserController {
 		}
 
 		return userResponses;
+	}	
+	
+	// get female users
+	@GetMapping(path="/female")
+	public List<UserResponse> getFemaleUsers(@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "limit", defaultValue = "4") int limit) {
+		System.out.print("getUsers() called : " + page + ", " + limit);
+
+		// get page -1
+		if(page > 0) page -= 1;
+		
+		// create return list
+		List<UserResponse> userResponses = new ArrayList<UserResponse>();
+
+		List<UserDto> userDtos = userService.getFemaleUsers(page, limit);
+
+		// copy results
+		for (UserDto userDto : userDtos) {
+			UserResponse userResponse = new UserResponse();
+			BeanUtils.copyProperties(userDto, userResponse);
+
+			userResponses.add(userResponse);
+		}
+
+		return userResponses;
 	}
 
 	// get user with given id

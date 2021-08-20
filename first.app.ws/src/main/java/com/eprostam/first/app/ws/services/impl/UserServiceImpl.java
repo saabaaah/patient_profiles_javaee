@@ -191,4 +191,24 @@ public class UserServiceImpl implements UserService{
 		return userDtos;
 	}
 
+	@Override
+	public List<UserDto> getFemaleUsers(int page, int limit) {
+		// list to return 
+		List<UserDto> userDtos = new ArrayList<>();
+		
+		// get users per page
+		Pageable pageable = PageRequest.of(page, limit);
+		Page<UserEntity> pageUsers = userRepository.findFemaleUsers(pageable);
+		
+		// convert results 
+		for(UserEntity userEntity : pageUsers) {
+			UserDto dto = new UserDto();
+			BeanUtils.copyProperties(userEntity, dto);
+			
+			userDtos.add(dto);
+		}
+		
+		return userDtos;
+	}
+
 }
