@@ -67,9 +67,10 @@ public class UserEntity implements Serializable{
 
 	
 	// the groups of this user
-	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
+	// @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
 	
-	private Set<GroupEntity> groups = new HashSet<>();
+	// private Set<GroupEntity> groups = new HashSet<>();
+	
 	public long getId() {
 		return id;
 	}
@@ -182,6 +183,14 @@ public class UserEntity implements Serializable{
 	public void setContact(ContactEntity contact) {
 		this.contact = contact;
 	}
+
+	/*
+	 * public Set<GroupEntity> getGroups() { return groups; }
+	 * 
+	 * public void setGroups(Set<GroupEntity> groups) { this.groups = groups; }
+	 */
+	
+	
 	
 
 	

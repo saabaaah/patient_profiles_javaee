@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -32,7 +32,7 @@ public class ContactEntity implements Serializable{
 	private String skype;
 	
 	@OneToOne
-	@JoinTable(name = "users_id")
+	@JoinColumn(name = "users_id")
 	private UserEntity user;
 
 	public long getId() {
