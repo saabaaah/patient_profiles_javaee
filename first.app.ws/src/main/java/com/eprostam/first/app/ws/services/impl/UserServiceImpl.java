@@ -103,7 +103,11 @@ public class UserServiceImpl implements UserService{
 			userDto.getAddresses().get(i).setAddressId(utils.generateStringId(30));
 		}
 		
-		// 
+		// relate the contact object
+		if(userDto.getContact() != null) {
+			userDto.getContact().setUser(userDto);
+			userDto.getContact().setContactId(utils.generateStringId(30));
+		}
 		
 		// generate user entity
 		ModelMapper mapper = new ModelMapper();
