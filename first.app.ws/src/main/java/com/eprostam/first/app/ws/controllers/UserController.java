@@ -43,7 +43,7 @@ public class UserController {
 		// copy results
 		for (UserDto userDto : userDtos) {
 			ModelMapper mapper = new ModelMapper();
-			UserResponse userResponse = mapper.map(userDtos, UserResponse.class);
+			UserResponse userResponse = mapper.map(userDto, UserResponse.class);
 
 			userResponses.add(userResponse);
 		}
