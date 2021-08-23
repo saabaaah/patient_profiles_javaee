@@ -15,6 +15,8 @@ public class AddressDto implements Serializable {
 	private String zip;
 	private String street;
 	private UserDto user;
+	private boolean admin;
+
 	
 	public String getAddressId() {
 		return addressId;
@@ -65,6 +67,12 @@ public class AddressDto implements Serializable {
 	}
 	public void setUser(UserDto user) {
 		this.user = user;
+	}
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 	

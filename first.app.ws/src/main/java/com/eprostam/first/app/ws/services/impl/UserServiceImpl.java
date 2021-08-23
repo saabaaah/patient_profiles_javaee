@@ -181,6 +181,7 @@ public class UserServiceImpl implements UserService{
 		// convert results 
 		ModelMapper mapper = new ModelMapper();
 		for(UserEntity userEntity : pageUsers) {
+			System.out.println("ModelMapper : "+userEntity+" -> " +(userEntity instanceof UserEntity));
 			UserDto dto =  mapper.map(userEntity, UserDto.class);
 			userDtos.add(dto);
 		}

@@ -8,6 +8,7 @@ public class AddressResponse {
 	private String street;
 	private String country;
 	private String type;
+	private boolean admin;
 	
 	public String getAddressId() {
 		return addressId;
@@ -44,6 +45,12 @@ public class AddressResponse {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 	
