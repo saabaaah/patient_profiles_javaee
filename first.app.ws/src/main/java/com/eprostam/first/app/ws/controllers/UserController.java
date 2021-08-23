@@ -29,7 +29,9 @@ public class UserController {
 	// get users
 	@GetMapping
 	public List<UserResponse> getUsers(@RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(value = "limit", defaultValue = "4") int limit) {
+			@RequestParam(value = "limit", defaultValue = "4") int limit, 
+			@RequestParam(value="search", defaultValue = "") String search,
+			@RequestParam(value="status", defaultValue = "") int status) {
 		System.out.print("getUsers() called : " + page + ", " + limit);
 
 		// get page -1
@@ -37,8 +39,14 @@ public class UserController {
 		
 		// create return list
 		List<UserResponse> userResponses = new ArrayList<UserResponse>();
-
-		List<UserDto> userDtos = userService.getUsers(page, limit);
+		
+		// check whether we have search or not
+		List<UserDto> userDtos;
+		if(search.isEmpty()) {
+			userDtos = userService.getUsers(page, limit);
+		}else {
+			userDtos = userService.getUsersByCriteria(page, limit, search, status);
+		}
 
 		// copy results
 		for (UserDto userDto : userDtos) {

@@ -12,12 +12,12 @@ public interface UserService  extends UserDetailsService{
 	UserDto getUserByEmail(String email);
 	UserDto getUserByUserId(String userId);
 	
-	
 	// CRUD METHODS //
 	UserDto createUser(UserDto userDto);
 	UserDto updateUser(String id, UserDto userDto);
 	void deleteUser(String id);
 	List<UserDto> getUsers(int page, int limit);
 	List<UserDto> getUsersByGender(int page, int limit, int gender);
+	List<UserDto> getUsersByCriteria(int page, int limit, String search, int status);
 
 }

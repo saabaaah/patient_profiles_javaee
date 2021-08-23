@@ -207,4 +207,23 @@ public class UserServiceImpl implements UserService{
 		return userDtos;
 	}
 
+	@Override
+	public List<UserDto> getUsersByCriteria(int page, int limit, String search, int status) {
+		// list to return 
+		List<UserDto> userDtos = new ArrayList<>();
+		
+		// get users per page
+		Pageable pageable = PageRequest.of(page, limit);
+		Page<UserEntity> pageUsers = userRepository.findUsersByCriteria(pageable, search, status);
+		
+		// convert results 
+		ModelMapper mapper = new ModelMapper();
+		for(UserEntity userEntity : pageUsers) {
+			UserDto dto =  mapper.map(userEntity, UserDto.class);
+			userDtos.add(dto);
+		}
+		
+		return userDtos;
+	}
+
 }
