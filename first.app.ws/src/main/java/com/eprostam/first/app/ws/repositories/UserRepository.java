@@ -14,9 +14,11 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, L
 	UserEntity findByUserId(String userId);
 	
 	@Query(value = "select * from users where gender=?1", nativeQuery = true)
+	// JPQL ne fonctionne pas!!!@Query("select user from UserEntity user")
 	Page<UserEntity> findUsersByGender(Pageable pageableRequest, int gender);
 
-	@Query(value = "select * from users where (first_name like %?1% OR last_name like %?1%) OR (emailVerificationStatus = ?2 )", nativeQuery = true)
-	Page<UserEntity> findUsersByCriteria(Pageable pageable,@Param("search") String search, int status);
+	// native SQL : 
+	@Query(value = "select * from U where (first_name like %:search% OR last_name like %:search%) OR (emailVerificationStatus = :status )", nativeQuery = true)
+	Page<UserEntity> findUsersByCriteria(Pageable pageable, @Param("search") String search, @Param("status")  int status);
 
 }

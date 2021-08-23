@@ -31,7 +31,7 @@ public class UserController {
 	public List<UserResponse> getUsers(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "limit", defaultValue = "4") int limit, 
 			@RequestParam(value="search", defaultValue = "") String search,
-			@RequestParam(value="status", defaultValue = "") int status) {
+			@RequestParam(value="status", defaultValue = "0") int status) {
 		System.out.print("getUsers() called : " + page + ", " + limit);
 
 		// get page -1
