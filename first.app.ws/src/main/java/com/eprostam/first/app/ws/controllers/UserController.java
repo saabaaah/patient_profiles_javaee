@@ -19,6 +19,7 @@ import com.eprostam.first.app.ws.responses.UserResponse;
 import com.eprostam.first.app.ws.services.UserService;
 import com.eprostam.first.app.ws.shared.UserDto;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/users")
 public class UserController {
