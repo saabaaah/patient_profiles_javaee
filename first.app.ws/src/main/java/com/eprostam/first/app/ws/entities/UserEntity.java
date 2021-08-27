@@ -58,11 +58,11 @@ public class UserEntity implements Serializable{
 	@Column(nullable = false)
 	private boolean emailVerificationStatus = false;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<AddressEntity> addresses;
 	
 	// contact of the user
-	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private ContactEntity contact;
 
 	@Column(nullable=true)

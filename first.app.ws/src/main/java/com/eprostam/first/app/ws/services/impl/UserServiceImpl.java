@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
@@ -57,8 +58,10 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		// convert entity to Dto
-		ModelMapper mapper = new ModelMapper();
-		UserDto userDto = mapper.map(userEntity, UserDto.class);
+		//ModelMapper mapper = new ModelMapper();
+		//UserDto userDto = mapper.map(userEntity, UserDto.class);
+		UserDto userDto = new UserDto();
+		BeanUtils.copyProperties(userEntity, userDto);
 		return userDto;
 	}
 
@@ -74,7 +77,8 @@ public class UserServiceImpl implements UserService{
 		// user found, return it 
 		ModelMapper mapper = new ModelMapper();
 		UserDto userDto = mapper.map(userEntity, UserDto.class);
-		
+		//UserDto userDto = new UserDto();
+		//BeanUtils.copyProperties(userEntity, userDto);
 		return userDto;
 	}
 

@@ -1,6 +1,7 @@
 package com.eprostam.first.app.ws.controllers;
 
 import java.lang.reflect.Type;
+import java.security.Principal;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -25,16 +26,16 @@ public class AddressController {
 	AddressService addressService;
 	
 	@GetMapping
-	public ResponseEntity<List<AddressResponse>> getAddresses() {
+	public ResponseEntity<List<AddressResponse>> getAddresses(Principal principal) {
 		
 		// get from service the addresses
-		List<AddressDto> addressDtos = addressService.getAllAddresses();
+		List<AddressDto> addressDtos = addressService.getAllAddresses(principal);
 		
 		// convert to AddressResponses
 		Type type = new TypeToken<List<AddressResponse>>() {}.getType();
 		List<AddressResponse> addressResponses = new ModelMapper().map(addressDtos, type);
 		
-		return  new ResponseEntity<List<AddressResponse>>(addressResponses, HttpStatus.OK);
+		return new ResponseEntity<List<AddressResponse>>(addressResponses, HttpStatus.OK);
 		
 	}
 
