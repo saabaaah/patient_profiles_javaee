@@ -17,6 +17,7 @@ import com.eprostam.first.app.ws.services.AddressService;
 import com.eprostam.first.app.ws.services.UserService;
 import com.eprostam.first.app.ws.shared.AddressDto;
 import com.eprostam.first.app.ws.shared.UserDto;
+import com.eprostam.first.app.ws.shared.Utils;
 
 @Service
 public class AddressServiceImpl implements AddressService{
@@ -26,6 +27,9 @@ public class AddressServiceImpl implements AddressService{
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	Utils utils;
 
 	@Override
 	public List<AddressDto> getAllAddresses(String email) {
@@ -52,6 +56,27 @@ public class AddressServiceImpl implements AddressService{
 		List<AddressDto> addressDtos = new ModelMapper().map(addressEntities, typeList); 
 		
 		return addressDtos;
+	}
+
+	@Override
+	public AddressDto createAddress(AddressDto addressDto, String email) {
+		
+		// convert dto to entity
+		ModelMapper modelMapper = new ModelMapper();
+		AddressEntity addressEntity = modelMapper.map(addressDto, AddressEntity.class);
+		
+		// get the user and add it to the address
+		UserEntity userEntity = modelMapper.map(userService.getUserByEmail(email), UserEntity.class);
+		addressEntity.setUser(userEntity);
+		
+		// generate address id
+		addressEntity.setAddressId(utils.generateStringId(30));
+		
+		// create the address with the given user
+		AddressEntity createdAddressEntity = addressRepository.save(addressEntity);
+		
+		// convert returned result
+		return modelMapper.map(createdAddressEntity, AddressDto.class);
 	}
 
 }
