@@ -6,7 +6,6 @@ public class AddressRequest {
 	private String street;
 	private String country;
 	private String type;
-	private boolean admin;
 
 	public String getCity() {
 		return city;
@@ -38,14 +37,6 @@ public class AddressRequest {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public boolean isAdmin() {
-		return admin;
-	}
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-	
-	
 	
 
 }

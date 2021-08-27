@@ -15,7 +15,8 @@ public class UserResponse {
 	private int gender;
 	private List<AddressResponse> addresses;
 	private ContactResponse contact;
-	
+	private boolean admin;
+
 	
 	public String getFirstName() {
 		return firstName;
@@ -79,6 +80,15 @@ public class UserResponse {
 	}
 	public void setContact(ContactResponse contact) {
 		this.contact = contact;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 	

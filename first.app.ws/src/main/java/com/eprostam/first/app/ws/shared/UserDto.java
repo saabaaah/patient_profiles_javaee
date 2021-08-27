@@ -23,7 +23,8 @@ public class UserDto implements Serializable{
 	private boolean emailVerificationStatus;
 	private List<AddressDto> addresses;
 	private ContactDto contact;
-	
+	private boolean admin;
+
 	
 	public long getId() {
 		return id;
@@ -98,6 +99,16 @@ public class UserDto implements Serializable{
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+	
 	@Override
 	public String toString() {
 		return "UserDto [id=" + id + ", userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName

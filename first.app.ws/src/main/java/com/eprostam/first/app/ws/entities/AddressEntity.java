@@ -38,9 +38,6 @@ public class AddressEntity implements Serializable{
 
 	@Column(length=10, nullable = false)
 	private String type;
-	
-	@Column(nullable=true)
-	private boolean admin=false;
 
 	
 	@ManyToOne
@@ -126,17 +123,6 @@ public class AddressEntity implements Serializable{
 	public void setUser(UserEntity user) {
 		this.user = user;
 	}
-
-
-	public boolean isAdmin() {
-		return admin;
-	}
-
-
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-	
 	
 
 }

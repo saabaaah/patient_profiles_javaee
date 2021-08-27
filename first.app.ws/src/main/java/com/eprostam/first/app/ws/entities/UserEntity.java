@@ -65,6 +65,9 @@ public class UserEntity implements Serializable{
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
 	private ContactEntity contact;
 
+	@Column(nullable=true)
+	private boolean admin=false;
+
 	
 	// the groups of this user
 	// @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
@@ -190,6 +193,15 @@ public class UserEntity implements Serializable{
 	 * public void setGroups(Set<GroupEntity> groups) { this.groups = groups; }
 	 */
 	
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	
 	
 

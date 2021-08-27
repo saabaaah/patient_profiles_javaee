@@ -38,6 +38,9 @@ public class UserRequest {
 	
 	private List<AddressRequest> addresses;
 	
+	private boolean admin;
+
+	
 	private ContactRequest contact;
 	
 	public String getBirthDate() {
@@ -101,6 +104,15 @@ public class UserRequest {
 	}
 	public void setContact(ContactRequest contact) {
 		this.contact = contact;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 	
