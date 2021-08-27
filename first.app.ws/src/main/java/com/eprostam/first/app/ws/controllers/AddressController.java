@@ -29,7 +29,7 @@ public class AddressController {
 	public ResponseEntity<List<AddressResponse>> getAddresses(Principal principal) {
 		
 		// get from service the addresses
-		List<AddressDto> addressDtos = addressService.getAllAddresses(principal);
+		List<AddressDto> addressDtos = addressService.getAllAddresses(principal.getName());
 		
 		// convert to AddressResponses
 		Type type = new TypeToken<List<AddressResponse>>() {}.getType();

@@ -28,10 +28,10 @@ public class AddressServiceImpl implements AddressService{
 	UserService userService;
 
 	@Override
-	public List<AddressDto> getAllAddresses(Principal principal) {
+	public List<AddressDto> getAllAddresses(String email) {
 		
 		// get current user
-		UserDto currentUserDto = userService.getUserByEmail(principal.getName());
+		UserDto currentUserDto = userService.getUserByEmail(email);
 		// convert user to entity
 		UserEntity currentUserEntity = (new ModelMapper()).map(currentUserDto, UserEntity.class);
 		
