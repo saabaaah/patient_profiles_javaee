@@ -11,4 +11,6 @@ public interface AddressService {
 
 	AddressDto createAddress(AddressDto addressDto, String email);
 
+	AddressDto getAddressByAddressId(String id);
+
 }

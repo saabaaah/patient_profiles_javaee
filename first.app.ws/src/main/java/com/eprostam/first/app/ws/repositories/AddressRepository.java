@@ -12,5 +12,7 @@ import com.eprostam.first.app.ws.entities.UserEntity;
 public interface AddressRepository extends CrudRepository<AddressEntity, Long>{
 
 	List<AddressEntity> findByUser(UserEntity userEntity);
+
+	AddressEntity findByAddressId(String id);
 	
 }

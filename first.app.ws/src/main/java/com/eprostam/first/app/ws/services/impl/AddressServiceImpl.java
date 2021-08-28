@@ -79,4 +79,12 @@ public class AddressServiceImpl implements AddressService{
 		return modelMapper.map(createdAddressEntity, AddressDto.class);
 	}
 
+	@Override
+	public AddressDto getAddressByAddressId(String id) {
+		// get the AddressEntity
+		
+		AddressDto addressDto = (new ModelMapper()).map(addressRepository.findByAddressId(id), AddressDto.class);
+		return addressDto;
+	}
+
 }

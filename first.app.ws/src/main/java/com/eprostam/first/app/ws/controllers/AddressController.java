@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,7 +60,17 @@ public class AddressController {
 		AddressResponse addressResponse = modelMapper.map(createdAddressDto, AddressResponse.class);
 		
 		return new ResponseEntity<AddressResponse>(addressResponse, HttpStatus.CREATED);
-				
+		
+	}
+	
+	@GetMapping(path = "/{id}")
+	ResponseEntity<AddressResponse> getAddress(@PathVariable String id){
+		
+		// find the address and return it
+		AddressDto addressDto = addressService.getAddressByAddressId(id);
+		AddressResponse response = (new ModelMapper()).map(addressDto, AddressResponse.class);
+		
+		return new ResponseEntity<AddressResponse> (response, HttpStatus.OK);
 		
 	}
 
