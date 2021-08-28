@@ -15,4 +15,6 @@ public interface AddressService {
 
 	AddressDto updateAddress(String id, AddressDto addressDto);
 
+	void deleteAddress(String id);
+
 }

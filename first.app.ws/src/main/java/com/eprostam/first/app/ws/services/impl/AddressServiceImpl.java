@@ -108,4 +108,19 @@ public class AddressServiceImpl implements AddressService{
 		return updatedAddressDto;
 	}
 
+	@Override
+	public void deleteAddress(String id) {
+		// get the entity
+		AddressEntity addressEntity = addressRepository.findByAddressId(id);
+		
+		// check if it exists 
+		if(addressEntity == null) {
+			throw new RuntimeException("This address doesn't exist in the database!!!");
+		}
+		
+		// else delete address
+		addressRepository.delete(addressEntity);
+		
+	}
+
 }
