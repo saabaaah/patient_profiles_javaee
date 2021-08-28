@@ -13,4 +13,6 @@ public interface AddressService {
 
 	AddressDto getAddressByAddressId(String id);
 
+	AddressDto updateAddress(String id, AddressDto addressDto);
+
 }

@@ -31,7 +31,7 @@ public class AppExceptionHandler {
 		
 		ErrorResponse response = new ErrorResponse(new Date(), ex.getMessage());
 		ex.printStackTrace();
-		return new ResponseEntity<Object>(response, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<Object>(ex, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}
 	

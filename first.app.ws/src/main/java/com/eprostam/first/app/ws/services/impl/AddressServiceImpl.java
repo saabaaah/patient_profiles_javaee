@@ -87,4 +87,25 @@ public class AddressServiceImpl implements AddressService{
 		return addressDto;
 	}
 
+	@Override
+	public AddressDto updateAddress(String id, AddressDto addressDto) {
+		// get the concerned Entity
+		AddressEntity addressEntity = addressRepository.findByAddressId(id);
+		
+		// update Data
+		addressEntity.setCity(addressDto.getCity());
+		addressEntity.setCountry(addressDto.getCountry());
+		addressEntity.setStreet(addressDto.getStreet());
+		addressEntity.setType(addressDto.getType());
+		addressEntity.setZip(addressDto.getZip());
+		
+		// update the DB entity
+		AddressEntity updatedAddressEntity = addressRepository.save(addressEntity);
+		
+		// convert and return 
+		AddressDto updatedAddressDto = new ModelMapper().map(updatedAddressEntity, AddressDto.class);
+		
+		return updatedAddressDto;
+	}
+
 }

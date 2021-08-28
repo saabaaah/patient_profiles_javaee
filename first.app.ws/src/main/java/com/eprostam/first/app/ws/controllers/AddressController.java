@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.security.Principal;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.modelmapper.ModelMapper;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +51,7 @@ public class AddressController {
 	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, 
 				 produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<AddressResponse> createAddress(@RequestBody AddressRequest addressRequest, Principal principal){
+	public ResponseEntity<AddressResponse> createAddress(@RequestBody @Valid AddressRequest addressRequest, Principal principal){
 		
 		// convert request to call service
 		ModelMapper modelMapper = new ModelMapper();
@@ -71,6 +73,22 @@ public class AddressController {
 		AddressResponse response = (new ModelMapper()).map(addressDto, AddressResponse.class);
 		
 		return new ResponseEntity<AddressResponse> (response, HttpStatus.OK);
+		
+	}
+	
+	// updating an address
+	@PutMapping(path="/{id}")
+	ResponseEntity<AddressResponse> updateAddress(@PathVariable String id, @RequestBody @Valid AddressRequest addressRequest, Principal principal){
+		
+		// get the data converted into Dto
+		AddressDto addressDto = new ModelMapper().map(addressRequest, AddressDto.class);
+		
+		// update data :
+		AddressDto updatedAddressDto = addressService.updateAddress(id, addressDto);
+		
+		// covert and return data
+		AddressResponse addressResponse = new ModelMapper().map(updatedAddressDto, AddressResponse.class);
+		return new ResponseEntity<AddressResponse>(addressResponse, HttpStatus.ACCEPTED);
 		
 	}
 
